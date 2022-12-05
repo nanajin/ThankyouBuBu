@@ -8,10 +8,20 @@ function Header(){
     navigate("/");
   }
   return(
-    <>
-      <h1>Thankyou BUBU</h1>
-      <img src={bubu_header} alt="header" onClick={onClick}/>
-    </>
+    <div style={{backgroundColor: "rgb(239, 239, 183)", border: "1px solid black", position:"relative"}}>
+      <img 
+        src={bubu_header}
+        alt="header" 
+        onClick={onClick}
+        style={{
+          position: "absolute",
+          margin: "auto",
+          marginTop: "20px",
+          left: "50%",
+          transform: "translate(-50%)",
+        }}  
+      />
+    </div>
   )
 }
 export default Header;

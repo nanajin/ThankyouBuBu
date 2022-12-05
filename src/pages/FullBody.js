@@ -1,35 +1,48 @@
-import React from "react";
-import Header from "../components/Header";
+import React, { useEffect, useState } from "react";
+import NavBar from "../components/NavBar";
+import ReactPlayer from "react-player";
+import axios from "axios";
+import styles from '../css/Body.module.css';
+import Card from "../components/Card";
 
 function FullBody(){
-  const embedLink = [
-    {
-      id: 1,
-      src:"https://www.youtube.com/embed/UYHfk45Yi2c"},
-    { 
-      id:2,
-      src:"https://www.youtube.com/embed/dJXZRZvqbYg"},
-    {
-      id:3,
-      src:"https://www.youtube.com/embed/54tTYO-vU2E"}
-  ]
+  const params = {
+    key: "AIzaSyAlTXZmzSpanSsSZnemPbKzYLGW176WgyI",
+    part: "snippet",
+    channelId: "UCpg89Ys3E4BaLGgEEWVmI9g",
+    channelType: 'channelTypeUnspecified',
+    q: '전신',
+    maxResults: 10,
+  }
+  const [itemArr, setItemArr] = useState([]);
+
+  useEffect(()=>{
+    axios.get(
+      "https://www.googleapis.com/youtube/v3/search", {params}
+      ).then(res=>{
+        // console.log(res.data);
+        setItemArr(res.data.items);
+      })
+  },[]);
+
   return(
     <>
-    <Header/>
-      <iframe
-        width="560" 
-        height="315" 
-        src="https://www.youtube.com/embed/VNQpP6C1fJg" 
-        title="YouTube video player" 
-        frameBorder="0" 
-        allow="accelerometer; 
-              autoplay; 
-              clipboard-write; 
-              encrypted-media; 
-              gyroscope; 
-              picture-in-picture" 
-        allowFullScreen>
-      </iframe>
+    <NavBar/>
+      {itemArr ? 
+      <div className={styles.player_container}>
+        {itemArr.map((item)=>{
+          const snippet = item.snippet;
+          return(
+            <Card 
+              thumbnail={snippet.thumbnails.medium} 
+              title={snippet.title}
+              id={item.id.videoId}
+            />
+          )
+        })}
+      </div>:
+      <p>Loading...</p>
+      }
     </>
   )
 }

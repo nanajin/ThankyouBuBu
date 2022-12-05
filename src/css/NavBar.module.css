@@ -1,0 +1,66 @@
+.container{
+  width: 80%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.navbar{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  height: 60px;
+  padding-left: 0;
+}
+.navbar a{
+  text-decoration: none;
+  color: rgb(242, 80, 107);
+}
+.navbar a:hover{
+  color: rgb(242, 80, 107);
+  font-weight: bold;
+}
+.navbar ul{
+  padding-left: 0;
+}
+.navbar ul li{
+  list-style: none;
+  text-align: center;
+  color: rgb(242, 80, 107);
+  padding: 10px;
+  margin-bottom: 10px;
+  border-bottom: 2px solid rgb(242, 80, 107);
+  padding-left: 0;
+  margin: 10px;
+
+}
+.drop{
+  padding-left: 0;
+  background-color: black;
+  border-radius: 1em;
+  z-index: 1;
+}
+.menu_fadein li{
+  position: relative;
+  animation: slide-fade-in-dropdown-animation 1s ease;
+}
+.menu_fadeout{
+  position: relative;
+  animation: slide-fade-out-dropdown-animation 1s ease;
+}
+@keyframes slide-fade-in-dropdown-animation {
+  0% {
+    transform: translateY(-10%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* fade out */
+@keyframes slide-fade-out-dropdown-animation {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-10%);
+  }
+}
