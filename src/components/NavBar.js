@@ -6,16 +6,12 @@ import bubu_profile from "../img/bubu_profile.jpg";
 function NavBar(){
   const [upper, setUpper] = useState(false);
   const [lower, setLower] = useState(false);
-  const upperbody = ['상체 운동', '뱃살 운동', '팔뚝살 운동']
-  const onMouseOver = (event)=>{
-    if(upperbody.includes(event.target.innerText)){
-      setUpper(true);
-      // setLower(false); //여기 수정하기
-    }
-    else{
-      setLower(true);
-    }
+  const onUpperMouseOver = (event)=>{
+    setUpper(true);  
   }
+  const onLowerMouseOver = (event)=>{
+    setLower(true);  
+}
   const onMouseLeave = ()=>{
     setUpper(false);
     setLower(false);
@@ -34,11 +30,11 @@ function NavBar(){
           </Link>
         </li>
       </ul>
-      <ul className={upper && styles.drop} onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
-      <li>
-        <Link to="/upperbody">
-          상체 운동
-        </Link>
+      <ul className={upper && styles.drop} onMouseOver={onUpperMouseOver} onMouseLeave={onMouseLeave}>
+        <li>
+          <Link to="/upperbody">
+            상체 운동
+          </Link>
         </li>
         {upper && <div className={styles.menu_fadein}>
             <li>뱃살 운동</li>
@@ -46,7 +42,7 @@ function NavBar(){
           </div>
         }
       </ul>
-      <ul className={lower && styles.drop} onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
+      <ul className={lower && styles.drop} onMouseOver={onLowerMouseOver} onMouseLeave={onMouseLeave}>
         <li>하체 운동</li>
         {lower && <div className={styles.menu_fadein}>
             <li>허벅지 운동</li>

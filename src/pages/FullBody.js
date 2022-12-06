@@ -7,14 +7,16 @@ import Card from "../components/Card";
 
 function FullBody(){
   const params = {
-    key: "AIzaSyAlTXZmzSpanSsSZnemPbKzYLGW176WgyI",
+    key: process.env.REACT_APP_YOUTUBE_API_KEY,
     part: "snippet",
-    channelId: "UCpg89Ys3E4BaLGgEEWVmI9g",
+    channelId: process.env.REACT_APP_CHANNEL_ID,
     channelType: 'channelTypeUnspecified',
     q: '전신',
     maxResults: 10,
+    order: "viewCount",
   }
   const [itemArr, setItemArr] = useState([]);
+  const [rank, setRank] = useState(0);
 
   useEffect(()=>{
     axios.get(
@@ -28,15 +30,17 @@ function FullBody(){
   return(
     <>
     <NavBar/>
-      {itemArr ? 
+      {itemArr ?
       <div className={styles.player_container}>
         {itemArr.map((item)=>{
           const snippet = item.snippet;
+          // setRank(prev=>prev+1)
           return(
             <Card 
               thumbnail={snippet.thumbnails.medium} 
               title={snippet.title}
               id={item.id.videoId}
+              rank={rank}
             />
           )
         })}

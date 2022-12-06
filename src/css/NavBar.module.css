@@ -38,6 +38,9 @@
   border-radius: 1em;
   z-index: 1;
 }
+.hidden{
+  display: none;
+}
 .menu_fadein li{
   position: relative;
   animation: slide-fade-in-dropdown-animation 1s ease;
