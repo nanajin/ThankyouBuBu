@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import bubu_profile from "../img/bubu_profile.jpg";
+import logo from "../img/logo.jpg";
 import { useNavigate } from 'react-router-dom';
 import NavBar from "./NavBar";
+import styles from "../css/Header.module.css";
+import {GoSearch} from 'react-icons/go';
 
 function Header(){
   const navigate = useNavigate();
@@ -21,25 +23,20 @@ function Header(){
   const onSearch = (event)=>{
     event.preventDefault();
     navigate(`/search/${search}`);
-    // q = search;
-    // console.log(q);
   }
 
   return(
-    <>
-      <div className="main_profile" onClick={onGoHome}>
-        <img src={bubu_profile} alt="profile"/>
+    <div className={styles.header}>
+      <div className={styles.main_logo} onClick={onGoHome}>
+        <img src={logo} alt="logo"/>
       </div>
-
-      <NavBar/>
-
-      <form onSubmit={onSearch}>
+        <NavBar/>
+      <form onSubmit={onSearch} className={styles.search_form}>
         <input type="text" placeholder="Search" value={search} onChange={onChange}/>
-        <button>search</button>
+        <button><GoSearch/></button>
       </form>
-
       <button onClick={onLogin}>Login</button>
-    </>
+    </div>
     
   )
 }

@@ -1,3 +1,10 @@
-.background{
-  background-color: rgb(239, 239, 183);
+.home div{
+  position: relative;
+}
+.home > div > img{
+  position: absolute;
+  margin: auto;
+  margin-top: 20px;
+  left: 50%;
+  transform: translate(-50%);
 }
