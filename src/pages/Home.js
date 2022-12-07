@@ -32,7 +32,8 @@ function Home({user}){
         }}  
       />
     </div>
-      <button onClick={onClick}>{user? "Start":"Sign In"}</button>
+    {user? 
+      <button onClick={onClick}>Start</button> : null}
     </div>
   )
 }

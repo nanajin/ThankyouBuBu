@@ -1,11 +1,16 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "../css/Card.module.css";
 
 function Card({thumbnail, title, id, rank}){
   const navigate = useNavigate();
+  const str = "칼소폭";
   const onClick = ()=>{
     navigate(`/video/${id}`);
+  }
+  // console.log(title);
+  if(title.includes(str)){
+    // console.log(title);
   }
   return(
     <div className={styles.card} onClick={onClick}>
