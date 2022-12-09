@@ -1,10 +1,18 @@
 .player_container{
+  width: 80%;
+  margin: auto;
+  margin-top: 5%;
   display: grid;
-  grid-template-columns: repeat(2, auto);
+  grid-template-columns: repeat(3, 1fr);
   gap: 50px;
 }
 
-@media screen and (max-width: 500px){
+@media screen and (max-width: 900px){
+  .player_container{
+    grid-template-columns: repeat(2, auto);
+  }
+}
+@media screen and (max-width: 600px){
   .player_container{
     grid-template-columns: repeat(1, auto);
   }

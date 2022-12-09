@@ -1,6 +1,8 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
+import styles from "../css/Login.module.css";
 
 function LoginForm(){
   const [email, setEmail] = useState("");
@@ -10,7 +12,7 @@ function LoginForm(){
   const [visiblePwd, setVisiblePwd] = useState(false);
   const [visiblePwd2, setVisiblePwd2] = useState(false);
   const [signUp, setSignUp] = useState(true);
-
+  const navigate = useNavigate();
   const onChange = (event)=>{
     const {target: {name, value}} = event;
     if(name === "email"){
@@ -53,6 +55,8 @@ function LoginForm(){
         await createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential)=>{
           const user = userCredential.user;
+          alert("환영합니다");
+          navigate("/");
         })
         .catch(e=>{
           alert(e.message);
@@ -62,6 +66,8 @@ function LoginForm(){
         await signInWithEmailAndPassword(auth, email, password)
         .then((userCredential)=>{
           const user = userCredential.user;
+          alert("환영합니다");
+          navigate("/");
         })
         .catch(e=>{
           alert(e.message);
@@ -80,11 +86,11 @@ function LoginForm(){
   }
 
   return (
-    <div>
+    <div className={styles.login_container}>
       <div>
         {signUp ? <h1>회원가입</h1>: <h1>로그인</h1>}
       </div>
-      <form onSubmit={onSubmit} className="container">
+      <form onSubmit={onSubmit} className={styles.login_form}>
         <input 
           name="email" 
           type="email" 
@@ -92,7 +98,7 @@ function LoginForm(){
           required
           value={email}
           onChange={onChange}
-          className="authInput"
+          className={styles.login_input}
         />
         <div>
           <input 
@@ -102,7 +108,7 @@ function LoginForm(){
             required
             value={password}
             onChange={onChange}
-            className="authInput"
+            className={styles.login_input}
             minLength={6}
           />
           <button onClick={onVisibleClick} name="pwd">visible</button>
@@ -115,22 +121,23 @@ function LoginForm(){
             required
             value={password2}
             onChange={onPwdCheckChange}
-            className="authInput"
+            className={styles.login_input}
           />
           <button onClick={onVisibleClick} name="check">visible</button>
 
         </div>
         {pwdCheck? 
-          <span>비밀번호가 일치합니다.</span>:
-          <span>비밀번호가 일치하지 않습니다.</span>
+          <p>비밀번호가 일치합니다.</p>:
+          <p>비밀번호가 일치하지 않습니다.</p>
         }
-        <input 
-          type="submit" 
-          className="authInput authSubmit"
-          value={signUp ? "Create Account": "Sign In"}
-        />
+        <br/>
+        <input type="submit" value={signUp ? "Create Account": "Sign In"}/>
+
+        {/* <button className={styles.login_submit}>
+          {signUp ? "Create Account": "Sign In"}
+        </button> */}
       </form>
-      <span onClick={toggleAccount} className="authSwitch">
+      <span onClick={toggleAccount} className={styles.login_signin}>
         {signUp? "Sign In": "Create Account"}
       </span>
     </div>

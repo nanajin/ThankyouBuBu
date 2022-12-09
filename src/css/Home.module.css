@@ -2,9 +2,63 @@
   position: relative;
 }
 .home > div > img{
-  position: absolute;
+  /* position: absolute; */
   margin: auto;
   margin-top: 20px;
+  margin-bottom: 15%;
   left: 50%;
   transform: translate(-50%);
+}
+.rank, .community_container{
+  display: flex;
+  width: 80%;
+  /* height: 250px; */
+  margin: auto;
+  border: 1px solid black; 
+  text-align: center;
+}
+.rank{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.rank > div{
+  width: inherit;
+  height: inherit;
+  border: 1px solid blue;
+  margin: auto;
+  text-align: center;
+}
+.rank_title{
+  border-bottom: 1px solid gainsboro;
+  width: 90%;
+  height: fit-content;
+  margin: auto;
+  padding: 10px;
+}
+.rank_title > a{
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+}
+.rank_title > a:hover{
+  cursor: pointer;
+  color: rgb(242, 80, 107);
+  transition: all 0.3s ease;
+}
+.medal{
+  font-size: 25px;
+  float: left;
+  color: gold;
+}
+.gold{
+  color: gold;
+}
+.silver{
+  color: silver;
+}
+.bronze{
+  color: #CD7F32;
+}
+.community_container{
+  margin-top: 15%;
 }

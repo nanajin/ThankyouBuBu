@@ -1,21 +1,35 @@
 .card{
-  width: 360px;
-  height: 300px;
-  border: 2px solid black;
+  width: inherit;
+  height: inherit;
+  border: 2px solid orange;
   border-radius: 1em;
   text-align: center;
+  margin-left: 10%;
 }
 .card :hover{
   cursor: pointer;
 }
 .card img{
   margin-top: 20px;
+  border-radius: 0.5em;
+  width: inherit;
 }
+/* .title{
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  border: 2px solid red;
+  font-size: 20px;
+  font-weight: bold;
+  width: 80%;
+  height: fit-content;
+} */
 .card p{
   font-size: 20px;
   font-weight: bold;
   width: fit-content;
   height: fit-content;
   margin: auto;
-  margin-top: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }

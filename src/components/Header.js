@@ -4,13 +4,17 @@ import { useNavigate } from 'react-router-dom';
 import NavBar from "./NavBar";
 import styles from "../css/Header.module.css";
 import {GoSearch} from 'react-icons/go';
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase";
+import Login from "../pages/Login";
 
-function Header(){
+function Header({user}){
   const navigate = useNavigate();
   const [search, setSearch] = useState();
-  let q;
+  const [popUp, setPopUp] = useState(false);
 
   const onLogin = ()=>{
+    // setPopUp((prev)=>!prev);
     navigate("/login");
   }
   const onGoHome = ()=>{
@@ -24,7 +28,16 @@ function Header(){
     event.preventDefault();
     navigate(`/search/${search}`);
   }
-
+  const onLogOut = ()=>{
+    const ok = window.confirm("로그아웃 하시겠습니까?");
+    if(ok){
+      signOut(auth).then(()=>{
+        navigate("/");
+        }).catch(e=>{
+          alert(e);
+      })
+    };
+  }
   return(
     <div className={styles.header}>
       <div className={styles.main_logo} onClick={onGoHome}>
@@ -35,7 +48,13 @@ function Header(){
         <input type="text" placeholder="Search" value={search} onChange={onChange}/>
         <button><GoSearch/></button>
       </form>
-      <button onClick={onLogin}>Login</button>
+      {user? 
+        <div>
+          {user.displayName} 
+          <button onClick={onLogOut}>LogOut</button>
+        </div>:
+        <button onClick={onLogin}>Login</button>
+      }
     </div>
     
   )

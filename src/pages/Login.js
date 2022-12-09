@@ -2,6 +2,8 @@ import React from "react";
 import { GoogleAuthProvider, signInWithPopup} from "firebase/auth";
 import { auth } from "../firebase";
 import LoginForm from "./LoginForm";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 function Login(){
   const onSocialClick = async(event)=>{
@@ -22,12 +24,14 @@ function Login(){
 
   return (
     <div className="LoginContainer">
+      <Header/>
       <LoginForm/>
       <div className="LoginBtns">
         <button name="google" onClick={onSocialClick} className="LoginBtn">
           Continue with Google
         </button>
       </div>
+      <Footer/>
     </div>
   )
 }

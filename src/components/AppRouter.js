@@ -33,7 +33,7 @@ function AppRouter(){
           <Route path="/" element={<Home user={user}/>} />
           <Route path="/body/:type" element={<Body/>} />
           <Route path="/body/:type/:part" element={<BodyPart/>} />
-          <Route path="/video/:id" element={<Video/>}/>
+          <Route path="/video/:id" element={<Video user={user}/>}/>
           <Route path="/login" element={<Login/>}/>
           <Route path="/search/:q" element={<Search/>}/>
           {/* {!user && <Route path="/login" element={<Login/>}/>} */}
