@@ -7,6 +7,8 @@ import Header from "../components/Header";
 
 function Body(){
   const [itemArr, setItemArr] = useState([]);
+  const [resultArr, setResultArr] = useState([]);
+  let idArr = [];
   const parameter = useParams();
   const type = parameter.type;
   let playlistId;
@@ -42,19 +44,35 @@ function Body(){
       })
   },[playlistId]);
   
+  // useEffect(()=>{
+  //   setResultArr(idArr);
+  // },[idArr]);
+  // if(itemArr){
+  //   itemArr.forEach((item)=>{
+  //     if(!resultArr.includes(item.snippet.resourceId.videoId)){
+  //       resultArr.push(item);
+  //     }
+  //   })
+  // }
+
   return(
     <>
       <Header/>
       {itemArr ?
         <div className={styles.player_container}>
-          {itemArr.map((item)=>{
+          {itemArr.map((item, index)=>{
             const snippet = item.snippet;
+            const prevId = snippet.resourceId.videoId;
+            idArr.push(prevId);
+            idArr = [...new Set(idArr)];
             rank = rank + 1
             return(
-              <Card 
+              <Card
+                // key={index} 
                 thumbnail={snippet.thumbnails.medium} 
                 title={snippet.title}
                 id={snippet.resourceId.videoId}
+                // id={idArr[index] ? idArr[index]:""}
                 rank={rank}
               />
             )

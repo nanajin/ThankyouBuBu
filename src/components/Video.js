@@ -12,7 +12,10 @@ function Video({user}){
   const p = useParams();
   const id = p.id;
   const [desc, setDesc] = useState("");
+  const [toggleDesc, setToggleDesc] = useState(false);
+  const [title, setTitle] = useState("");
   const [count, setCount] = useState(0);
+  const [played, setPlayed] = useState(0);
   const params = {
     key: process.env.REACT_APP_YOUTUBE_API_KEY,
     part: "snippet",
@@ -23,7 +26,9 @@ function Video({user}){
       "https://www.googleapis.com/youtube/v3/videos", {params}
       ).then(res=>{
         const item = res.data.items[0];
+        console.log(item);
         setDesc(item.snippet.description);
+        setTitle(item.snippet.title);
       })
   },[]);
   
@@ -41,38 +46,45 @@ function Video({user}){
     handleGetDocument();
   },[]);
   const onStart = async()=>{
-// 기존 count 조회 후 +1해서 set하기 
-  if(user){
-      await setDoc(doc(db, "viewCount", `${user.uid}`), {
-      viewCount: count + 1,
-      // uid: user.uid,
-    });
+    if(user){
+        await setDoc(doc(db, "viewCount", `${user.uid}`), {
+        viewCount: count + 1,
+        name: user.displayName,
+      });
+    }
+    else{
+      console.log("not user")
+    }
   }
-  else{
-    console.log("not user")
+  const onProgress = (event)=>{
+    setPlayed(Math.round(event.played*100)/100);
+    console.log(event.played); //event.played
   }
-  // try {
-  //   const docRef = await addDoc(collection(db, "viewCount"), {
-  //     viewCount: count,
-  //     uid: user.uid,
-  //   });
-  //   console.log("Document written with ID: ", docRef.id);
-  // } catch (e) {
-  //   console.error("Error adding document: ", e);
-  // }
+  if(played === 0.99){
+    setPlayed(1);
   }
-  
+  const onClick= ()=>{
+    setToggleDesc(prev=>!prev);
+  }
   return(
     <div>
       <Header/>
+      <h1>{title}</h1>
       <div className={styles.player_wrapper}>
         <ReactPlayer 
           className={styles.react_player}
           url={`https://www.youtube-nocookie.com/watch?v=${id}`}
           controls="true"
           onStart={onStart}
+          onProgress={onProgress}
         />
-        {desc? <p>{desc}</p> : "Loading..."}
+        <div className={styles.bar}>
+          <h1>진행률: {played}</h1>
+          {desc? 
+            <div className={styles.description} onClick={onClick}>
+              {toggleDesc && desc}
+            </div> : "Loading..."}
+        </div>
       </div>
       <Footer/>
     </div>

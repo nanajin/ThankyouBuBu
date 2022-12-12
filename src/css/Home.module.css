@@ -1,19 +1,14 @@
-.home div{
-  position: relative;
-}
-.home > div > img{
-  /* position: absolute; */
-  margin: auto;
-  margin-top: 20px;
-  margin-bottom: 15%;
+.home > img{
+  position: absolute;
+  margin-top: 50px;
   left: 50%;
   transform: translate(-50%);
 }
 .rank, .community_container{
   display: flex;
   width: 80%;
-  /* height: 250px; */
   margin: auto;
+  margin-top: 30%;
   border: 1px solid black; 
   text-align: center;
 }
@@ -45,10 +40,18 @@
   color: rgb(242, 80, 107);
   transition: all 0.3s ease;
 }
+.rank_user{
+  display: grid;
+  grid-template-columns: 30px 1fr 1fr;
+  padding: 5px;
+}
+.rank_user > p{
+  font-weight: bold;
+  margin: 5px;
+}
 .medal{
   font-size: 25px;
   float: left;
-  color: gold;
 }
 .gold{
   color: gold;

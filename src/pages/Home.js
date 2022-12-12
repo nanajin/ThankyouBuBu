@@ -11,6 +11,8 @@ import { db } from "../firebase";
 
 function Home({user}){
   const [itemArr, setItemArr] = useState([]);
+  let bestUserArr = [];
+  const [bestUser, setBestUser] = useState([]);
   const params = {
     key: process.env.REACT_APP_YOUTUBE_API_KEY,
     part: "snippet",
@@ -29,28 +31,22 @@ function Home({user}){
   const handleGetDocument = async()=>{
       // const querySnapshot = await getDocs(collection(db, "viewCount"));
       const docRef = collection(db, "viewCount");
-      const q = query(docRef, orderBy("viewCount", "desc"), limit(3));
+      const q = query(docRef, orderBy("viewCount", "desc"), limit(5));
       const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
-          console.log(doc.id, " => ", doc.data());
+          bestUserArr.push(doc.data());
+          setBestUser(bestUserArr);
         });
-
-      // if(querySnapshot){
-      //   querySnapshot.forEach(doc=>{
-      //     console.log(doc.id, doc.data());
-      //   })
-        // console.log(querySnapshot);
       }
-  
+
   useEffect(()=>{
     handleGetDocument();
   },[]);
+
   return(
     <div className={styles.home}>
       <Header user={user}/>
-      <div>
-        <img src={bubu_header} alt="slogan"/>
-      </div>
+      <img src={bubu_header} alt="slogan"/>
       <div className={styles.rank}>
         <div>
           <h3>Ranking(Top 5)</h3>
@@ -88,6 +84,36 @@ function Home({user}){
         </div>
         <div>
           <h3>Best Steady User(Top 5)</h3>
+          {bestUser ? bestUser.map((user, index)=>{
+            return(
+              <div className={`${styles.rank_title} ${styles.rank_user}`}>
+                {index === 0 && 
+                  <>
+                    <BiMedal className={`${styles.medal} ${styles.gold}`}/>
+                  <p>{user.name}</p>
+                  <p>{user.viewCount}</p>
+                  </>}
+                {index === 1 && 
+                  <>
+                    <BiMedal className={`${styles.medal} ${styles.silver}`}/>
+                    <p>{user.name}</p>
+                    <p>{user.viewCount}</p>  
+                  </>}
+                {index === 2 && 
+                  <>
+                    <BiMedal className={`${styles.medal} ${styles.bronze}`}/>
+                    <p>{user.name}</p> 
+                    <p>{user.viewCount}</p>   
+                  </>}
+                {(index === 3 || index === 4) && <>
+                  <p></p>
+                  <p>{user.name}</p> 
+                  <p>{user.viewCount}</p>   
+                </>}
+              </div>
+            )
+          }):
+          "User 없음"}
         </div>
       </div>
       <div className={styles.community_container}>
