@@ -1,9 +1,9 @@
 import React from "react";
 import { GoogleAuthProvider, signInWithPopup} from "firebase/auth";
-import { auth } from "../firebase";
+import { auth } from "../../firebase";
 import LoginForm from "./LoginForm";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 function Login(){
   const onSocialClick = async(event)=>{

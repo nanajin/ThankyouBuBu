@@ -1,14 +1,16 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "../pages/Home";
-import Login from "../pages/Login";
+import Login from "../pages/login/Login";
 import Video from "./Video";
 import { onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { auth } from "../firebase";
-import Body from "../pages/Body";
-import BodyPart from "../pages/BodyPart";
+import Body from "../pages/exercise/Body";
+import BodyPart from "../pages/exercise/BodyPart";
 import Search from "../pages/Search";
+import Community from "../pages/community/Community";
+import Writing from "../pages/community/Writing";
 
 function AppRouter(){
   const [user, setUser] = useState(null);
@@ -36,6 +38,8 @@ function AppRouter(){
           <Route path="/video/:id" element={<Video user={user}/>}/>
           <Route path="/login" element={<Login/>}/>
           <Route path="/search/:q" element={<Search/>}/>
+          <Route path="/community" element={<Community/>}/>
+          <Route path="/write" element={<Writing user={user}/>}/>
           {/* {!user && <Route path="/login" element={<Login/>}/>} */}
         </Routes>
       </BrowserRouter>

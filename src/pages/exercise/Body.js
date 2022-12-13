@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import styles from '../css/Body.module.css';
-import Card from "../components/Card";
+import styles from '../../css/Body.module.css';
+import Card from "../../components/Card";
 import { useParams } from "react-router-dom";
-import Header from "../components/Header";
+import Header from "../../components/Header";
 
 function Body(){
   const [itemArr, setItemArr] = useState([]);

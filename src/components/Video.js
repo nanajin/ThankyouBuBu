@@ -81,8 +81,14 @@ function Video({user}){
         <div className={styles.bar}>
           <h1>진행률: {played}</h1>
           {desc? 
-            <div className={styles.description} onClick={onClick}>
-              {toggleDesc && desc}
+            <div className={styles.desc_box} onClick={onClick}>
+              {toggleDesc ? 
+                <div className={styles.desc_contents}>
+                  {desc}
+                  {/* <button>X</button> */}
+                </div>:
+                <h2>Detail Description</h2>
+              }
             </div> : "Loading..."}
         </div>
       </div>

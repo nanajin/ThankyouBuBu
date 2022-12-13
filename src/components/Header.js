@@ -6,15 +6,13 @@ import styles from "../css/Header.module.css";
 import {GoSearch} from 'react-icons/go';
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
-import Login from "../pages/Login";
+import Login from "../pages/login/Login";
 
-function Header({user}){
+function Header(){
   const navigate = useNavigate();
   const [search, setSearch] = useState();
-  const [popUp, setPopUp] = useState(false);
-
+  const user = auth.currentUser;
   const onLogin = ()=>{
-    // setPopUp((prev)=>!prev);
     navigate("/login");
   }
   const onGoHome = ()=>{

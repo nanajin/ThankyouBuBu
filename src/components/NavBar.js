@@ -1,11 +1,10 @@
-import React, { createElement, useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../css/NavBar.module.css";
 
 function NavBar(){
   const [upper, setUpper] = useState(false);
   const [lower, setLower] = useState(false);
-  const navigate = useNavigate();
 
   const onUpperMouseOver = (event)=>{
     setUpper(true);  
@@ -17,10 +16,6 @@ function NavBar(){
     setUpper(false);
     setLower(false);
   }
-  // const onClick = (event)=>{
-  //   console.log(event.target.in);
-  //   // navigate("/fullbody/")
-  // }
   return(
     <div className={styles.container}>
         <ul className={styles.navbar}>
@@ -75,6 +70,13 @@ function NavBar(){
           <li>
             <Link to="/body/stretching">
               스트레칭
+            </Link>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <Link to="/community">
+              커뮤니티
             </Link>
           </li>
         </ul>

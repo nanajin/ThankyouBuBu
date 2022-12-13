@@ -1,0 +1,44 @@
+/* Community.js */
+.container{
+  border: 1px solid red;
+  text-align: center;
+  width: 80%;
+  margin: auto;
+  /* margin-top: 0; */
+}
+.contents{
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr;
+}
+.contents > p{
+  border-bottom: 2px solid gainsboro;
+  margin: 0;
+  padding: 18px;
+  overflow: hidden;
+}
+.contents > p:nth-child(1), .contents > p:nth-child(2){
+  border-right: 2px solid gainsboro;
+}
+
+/* Writing.js */
+.write_form{
+  border: 2px solid red;
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+}
+.write_title, .write_contents{
+  /* border: none; */
+  width: 50%;
+  margin: auto;
+  padding: 20px;
+
+}
+.write_title{
+  /* padding: 20px; */
+  border-bottom: 2px solid gainsboro;
+}
+.write_contents{
+  height: 500px;
+  resize: none;
+}
