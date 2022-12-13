@@ -1,4 +1,8 @@
 /* Community.js */
+.write_icon{
+  font-size: 30px;
+  margin-left: 80%;
+}
 .container{
   border: 1px solid red;
   text-align: center;
@@ -22,7 +26,6 @@
 
 /* Writing.js */
 .write_form{
-  border: 2px solid red;
   display: flex;
   flex-direction: column;
   margin-top: 30px;
@@ -36,9 +39,55 @@
 }
 .write_title{
   /* padding: 20px; */
+  border: none;
   border-bottom: 2px solid gainsboro;
 }
 .write_contents{
   height: 500px;
   resize: none;
+}
+.submit_btn{
+  padding: 15px;
+  width: fit-content;
+  margin: auto;
+  margin-top: 20px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 1em;
+}
+.submit_btn:hover{
+  cursor: pointer;
+  background-color: orange;
+  transition: all 0.3s ease;
+}
+/* Detail.js */
+.detail_container{
+  width: 70%;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 50px;
+  /* border: 2px solid red; */
+}
+.detail_container > div{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  text-align: center;
+  width: 300px;
+  float: right;
+  color: gray;
+  /* border: 2px solid pink; */
+}
+.detail_title{
+  text-align: center;
+  border-bottom: 2px solid gray;
+  padding-bottom: 10px;
+}
+.detail_contents{
+  display: flex;
+  width: 90%;
+  margin: auto;
+  margin-top: 100px;
+  /* border: 2px solid pink; */
+  word-break: break-all;
 }

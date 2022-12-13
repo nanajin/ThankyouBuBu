@@ -11,8 +11,8 @@ import { db } from "../firebase";
 
 function Home({user}){
   const [itemArr, setItemArr] = useState([]);
-  let bestUserArr = [];
   const [bestUser, setBestUser] = useState([]);
+  const [com, setCom] = useState([]);
   const params = {
     key: process.env.REACT_APP_YOUTUBE_API_KEY,
     part: "snippet",
@@ -28,19 +28,29 @@ function Home({user}){
       })
   },[]);
 
-  const handleGetDocument = async()=>{
-      // const querySnapshot = await getDocs(collection(db, "viewCount"));
-      const docRef = collection(db, "viewCount");
-      const q = query(docRef, orderBy("viewCount", "desc"), limit(5));
-      const querySnapshot = await getDocs(q);
-        querySnapshot.forEach((doc) => {
-          bestUserArr.push(doc.data());
-          setBestUser(bestUserArr);
-        });
-      }
-
+  const handleUserRank = async()=>{
+    const docRef = collection(db, "viewCount");
+    const q = query(docRef, orderBy("viewCount", "desc"), limit(5));
+    const querySnapshot = await getDocs(q);
+    let bestUserArr = [];
+    querySnapshot.forEach((doc) => {
+      bestUserArr.push(doc.data());
+      setBestUser(bestUserArr);
+    });
+  }
+  const handleCommunity = async()=>{
+    const docRef = collection(db, "writing");
+    const q = query(docRef, orderBy("date", "desc"), limit(5));
+    const querySnapshot = await getDocs(q);
+    let comArr = [];
+    querySnapshot.forEach((doc) => {
+      comArr.push(doc.data());
+      setCom(comArr);
+    });
+  }
   useEffect(()=>{
-    handleGetDocument();
+    handleUserRank();
+    handleCommunity();
   },[]);
 
   return(
@@ -118,6 +128,13 @@ function Home({user}){
       </div>
       <div className={styles.community_container}>
         <h2>Community</h2>
+        {com.map(item=>{
+          return(
+            <p><Link to={`/details/${item.writer}`} state={{item: item}}>
+              {item.title}</Link>
+            </p>
+          )
+        })}
       </div>
       <Footer/>
     </div>

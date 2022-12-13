@@ -11,6 +11,7 @@ import BodyPart from "../pages/exercise/BodyPart";
 import Search from "../pages/Search";
 import Community from "../pages/community/Community";
 import Writing from "../pages/community/Writing";
+import Detail from "../pages/community/Detail";
 
 function AppRouter(){
   const [user, setUser] = useState(null);
@@ -40,6 +41,7 @@ function AppRouter(){
           <Route path="/search/:q" element={<Search/>}/>
           <Route path="/community" element={<Community/>}/>
           <Route path="/write" element={<Writing user={user}/>}/>
+          <Route path="/details/:text" element={<Detail/>}/>
           {/* {!user && <Route path="/login" element={<Login/>}/>} */}
         </Routes>
       </BrowserRouter>

@@ -5,6 +5,7 @@ import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import styles from "../../css/Community.module.css";
 import { db } from "../../firebase";
+import {BsPencilSquare} from "react-icons/bs";
 
 function Community(){
   const [itemArr, setItemArr] = useState([]);
@@ -28,8 +29,8 @@ function Community(){
     <>
     <Header/>
     <h1>Community</h1>
-    <Link to="/write">
-      <button>글쓰기</button>
+    <Link to="/write" className={styles.write_icon}>
+      <BsPencilSquare/>
     </Link>
     <div className={styles.container}>
       <div className={styles.contents}>
@@ -38,11 +39,14 @@ function Community(){
         <p>작성일자</p>
       </div>
       {itemArr && itemArr.map((item)=>{
+          const date = new Date(item.date);
         return(
-          <div className={styles.contents}>
-            <p>{item.title}</p>
+          <div className={styles.contents} key={item.docId}>
+            <p><Link to={`/details/${item.docId}`} state={{item: item}}>
+              {item.title}</Link>
+            </p>
             <p>{item.writer}</p>
-            {/* <p>{item.date}</p> */}
+            <p>{date.getFullYear()}-{date.getMonth()+1}-{date.getDate()}</p>
           </div>)
       })}
     </div>

@@ -34,19 +34,12 @@ function Writing({user}){
     }
     try{
       const docRef = await addDoc(collection(db, "writing"), post);
+      alert("글 게시에 성공하였습니다")
     }
     catch(e){
       console.log(e);
     }
-    
     navigate("/");
-    // setPost({
-    //   title: title,
-    //   contents: contents,
-    //   writer: user.displayName,
-    //   date: new Date(),
-    // })
-    console.log("확인");
   }
 
   return(
@@ -56,9 +49,9 @@ function Writing({user}){
       <form onSubmit={onSubmit} className={styles.write_form}>
         <input type="text" placeholder="title" name="title"
           onChange={onChange} className={styles.write_title}/>
-          <textarea placeholder="contents" name="contents"
-            onChange={onChange} className={styles.write_contents}></textarea>
-        <input type="submit" value="Submit"/>
+        <textarea placeholder="contents" name="contents"
+          onChange={onChange} className={styles.write_contents}></textarea>
+        <input type="submit" value="Submit" className={styles.submit_btn}/>
       </form>:
       <Login/>
     }
