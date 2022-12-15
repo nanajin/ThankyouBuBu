@@ -16,6 +16,9 @@ function Video({user}){
   const [title, setTitle] = useState("");
   const [count, setCount] = useState(0);
   const [played, setPlayed] = useState(0);
+  const [review, setReview] = useState("");
+  const [comment, setComment] = useState([]);
+  
   const params = {
     key: process.env.REACT_APP_YOUTUBE_API_KEY,
     part: "snippet",
@@ -66,6 +69,18 @@ function Video({user}){
   const onClick= ()=>{
     setToggleDesc(prev=>!prev);
   }
+  const onChange = (event)=>{
+    const {target: {value}} = event;
+    setReview(value);
+  }
+  const onSubmit = async()=>{
+    const docRef = await addDoc(collection(db, "reviews"), {
+      name: user.displayName,
+      review: review,
+      videoId: id,
+      uid: user.uid,
+    });
+  }
   return(
     <div>
       <Header/>
@@ -90,6 +105,13 @@ function Video({user}){
                 <h2>Detail Description</h2>
               }
             </div> : "Loading..."}
+        </div>
+        <div>
+          <form onSubmit={onSubmit}>
+            <input type="textarea" placeholder="Write Your review" onChange={onChange}/>
+            <input type="submit" placeholder="SUBMIT"/>
+          </form>
+          <p></p>
         </div>
       </div>
       <Footer/>
