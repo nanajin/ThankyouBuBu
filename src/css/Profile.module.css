@@ -1,0 +1,25 @@
+.profile_container{
+  width: 50%;
+  margin: auto;
+  margin-top: 30px;
+  text-align: center;
+}
+.profile_icon{
+  font-size: 150px;
+  color: orange;
+  width: 150px;
+  margin: auto;
+}
+.my_story{
+  margin-top: 20px;
+}
+.my_story>p{
+  font-size: 20px;
+}
+.link_box{
+  border: 3px solid rebeccapurple;
+  border-radius: 1em;
+  width: 50%;
+  margin: auto;
+  margin-bottom: 30px;
+}

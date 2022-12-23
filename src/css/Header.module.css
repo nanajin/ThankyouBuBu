@@ -3,12 +3,13 @@
   width: 90%;
   margin: auto;
   display: grid;
-  grid-template-columns: 180px 4fr 1fr 100px;
+  grid-template-columns: 200px 4fr 1fr 100px;
   border-bottom: 1px solid gainsboro;
 }
 .main_logo img{
   width: 180px;
   height: 180px;
+  margin-left: 10px;
 }
 .main_logo:hover{
   cursor: pointer;
@@ -47,4 +48,29 @@
 }
 .hidden{
   display: none;
+}
+.profile{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.profile_icon{
+  font-size: 30px;
+  color: orange;
+  width: fit-content;
+  margin-left: 35%;
+  margin-top: 30px;
+}
+.log_btn{
+  border: none;
+  border-radius: 1em;
+  background-color: orange;
+  color: white;
+  padding: 5px;
+  width: 80%;
+  margin: auto;
+}
+.log_btn:hover{
+  background-color: red;
+  transition: all 0.3s ease;
 }

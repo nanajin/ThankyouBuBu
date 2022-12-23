@@ -4,6 +4,7 @@ import styles from '../../css/Body.module.css';
 import Card from "../../components/Card";
 import { useParams } from "react-router-dom";
 import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 function BodyPart(){
   const [itemArr, setItemArr] = useState([]);
@@ -59,6 +60,7 @@ function BodyPart(){
         </div>:
         <p>Loading...</p>
       }
+      <Footer/>
     </>
   )
 }

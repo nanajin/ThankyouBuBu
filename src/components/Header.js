@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import logo from "../img/logo.jpg";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import NavBar from "./NavBar";
 import styles from "../css/Header.module.css";
 import {GoSearch} from 'react-icons/go';
+import {FaUserCircle} from 'react-icons/fa';
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
 import Login from "../pages/login/Login";
@@ -47,11 +48,12 @@ function Header(){
         <button><GoSearch/></button>
       </form>
       {user? 
-        <div>
-          {user.displayName} 
-          <button onClick={onLogOut}>LogOut</button>
+        <div className={styles.profile}>
+          <Link to="/profile" className={styles.profile_icon}><FaUserCircle/></Link>
+          <p>{user.displayName}</p>
+          <button onClick={onLogOut} className={styles.log_btn}>LogOut</button>
         </div>:
-        <button onClick={onLogin}>Login</button>
+        <button onClick={onLogin} className={styles.log_btn}>Login</button>
       }
     </div>
     

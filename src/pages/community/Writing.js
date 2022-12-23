@@ -39,7 +39,7 @@ function Writing({user}){
     catch(e){
       console.log(e);
     }
-    navigate("/");
+    navigate(-1);
   }
 
   return(

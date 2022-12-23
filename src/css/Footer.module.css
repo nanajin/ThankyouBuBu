@@ -1,6 +1,52 @@
 .footer_container{
   background-color: black;
-}
-.footer_container p{
   color: white;
+  text-align: center;
+  padding-bottom: 30px;
+}
+.footer_container>h2{
+  padding-top: 30px;
+  font-size: 30px;
+}
+.youtube_logo{
+  font-size: 50px;
+}
+.youtube_logo > a{
+  text-decoration: none;
+  color: white;
+}
+.youtube_logo > a:hover{
+  color: red;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.footer_intro{
+  /* display: grid; */
+  width: 80%;
+  margin: auto;
+  /* grid-template-columns: repeat(3, 1fr);
+  grid-template-areas: 
+  "a b c"; */
+  
+}
+.footer_intro>p{
+  /* width: 30px; */
+}
+.footer_intro > p:nth-child(1){
+  grid-area: a;
+}
+.footer_intro > p:nth-child(2){
+  grid-area: b;
+}
+.footer_intro > p:nth-child(3){
+  grid-area: c;
+}
+.footer_intro > p:nth-child(4){
+  grid-area: d;
+}
+.footer_intro > p:nth-child(5){
+  grid-area: e;
+}
+.footer_intro > p:nth-child(6){
+  grid-area: f;
 }

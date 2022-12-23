@@ -4,7 +4,7 @@
   margin-left: 80%;
 }
 .container{
-  border: 1px solid red;
+  border: 2px solid gainsboro;
   text-align: center;
   width: 80%;
   margin: auto;
@@ -69,7 +69,7 @@
   margin-bottom: 50px;
   /* border: 2px solid red; */
 }
-.detail_container > div{
+.doc_info{
   display: grid;
   grid-template-columns: 1fr 1fr;
   text-align: center;
@@ -82,6 +82,13 @@
   text-align: center;
   border-bottom: 2px solid gray;
   padding-bottom: 10px;
+}
+.ud_icon{
+  font-size: 25px;
+  float: right;
+  border: none;
+  background: none;
+  cursor: pointer;
 }
 .detail_contents{
   display: flex;
